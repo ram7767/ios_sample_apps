@@ -16,10 +16,14 @@ struct ListOfBudgets: View {
     var body: some View {
         VStack {
             List(budgets) { budget in
-                HStack {
-                    Text(budget.title ?? "")
-                    Spacer()
-                    Text(budget.cost, format: .currency(code: Locale.current.currency?.identifier ?? ""))
+                NavigationLink {
+                    BudgetScreen(budget: budget)
+                } label: {
+                    HStack {
+                        Text(budget.title ?? "")
+                        Spacer()
+                        Text(budget.cost, format: .currency(code: Locale.current.currency?.identifier ?? ""))
+                    }
                 }
             }
         }
