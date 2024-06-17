@@ -9,17 +9,25 @@ import SwiftUI
 import CoreData
 
 struct BudgetScreen: View {
-   
-    let budget: Budget
     
-    @Environment(\.managedObjectContext) private var context
-    @FetchRequest private var expenses: FetchedResults<Expense>
+    let budget: Budget
     
     @State private var title: String = ""
     @State private var limit: Int?
     @State private var errorMessage: String = ""
     @State private var selectedTags: Set<Tag> = []
-   
+    
+    @Environment(\.managedObjectContext) private var context
+    @State private var expenses: [Expense] = []
+    
+    init(budget: Budget) {
+        self.budget = budget
+//        self._expenses = FetchRequest<Expense>(
+//            sortDescriptors: [],
+//            predicate: NSPredicate(format: "budget == %@", budget)
+//        )
+    }
+    
     private var total: Double {
         return expenses.reduce(0) { partialResult, expense in
             expense.cost + partialResult
@@ -28,13 +36,6 @@ struct BudgetScreen: View {
     
     private var remainig: Double {
         return budget.cost - total
-    }
-    
-    init(budget: Budget) {
-        self.budget = budget
-        _expenses = FetchRequest<Expense>( sortDescriptors: [],
-            predicate: NSPredicate(format: "budget == %@", budget)
-        )
     }
     
     private var isFromValid: Bool {
@@ -117,25 +118,7 @@ struct BudgetScreen: View {
                         }
                     }
                     ForEach(expenses) { expense in
-                        VStack {
-                            HStack {
-                                Text(expense.title ?? "Unknown")
-                                Spacer()
-                                Text(expense.cost, format: .currency(code: Locale.current.currency?.identifier ?? ""))
-                            }
-                            
-                            ScrollView(.horizontal) {
-                                HStack {
-                                    ForEach(Array(expense.tags as? Set<Tag> ?? [])) { tag in
-                                        Text(tag.name ?? "")
-                                            .padding(10)
-                                            .background(.gray)
-                                            .clipShape(RoundedRectangle(cornerRadius: 16.0, style: .continuous))
-                                    }
-                                    .foregroundColor(.white)
-                                }
-                            }
-                        }
+                        ExpenseCell(expense: expense)
                     }.onDelete(perform: deleteExpense)
                 }
             }

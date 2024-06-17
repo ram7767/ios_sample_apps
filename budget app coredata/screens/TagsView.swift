@@ -19,7 +19,7 @@ struct TagsView: View {
                 ForEach(tags) { tag in
                     Text(tag.name ?? "")
                         .padding(10)
-                        .background(selectedTag.contains(tag) ? .green : .gray)
+                        .background(selectedTag.contains(tag) ? .blue : .gray)
                         .clipShape(RoundedRectangle(cornerRadius: 16.0, style: .continuous))
                         .onTapGesture {
                             if selectedTag.contains(tag) {

@@ -25,14 +25,14 @@ class CoreDataProviders {
         smaple.cost = 5000
         smaple.dateCreated = Date()
        
-//       let tent = Expense(context: context)
-//       tent.title = "Tent"
-//       tent.cost = 500
-//       tent.date = Date()
-//       let tag = Tag(context: context)
-//       tag.name = "Food"
-//       tent.tags = [tag]
-//       smaple.addToExpenses(tent)
+       let tent = Expense(context: context)
+       tent.title = "Tent"
+       tent.cost = 500
+       tent.date = Date()
+       let tag = Tag(context: context)
+       tag.name = "Food"
+       tent.tags = [tag]
+       smaple.addToExpenses(tent)
        
        let commonTags = ["Food", "Shopping", "Entertainment", "Travel", "Dining",
                          "Groceries", "Health", "Education", "Transportation"]

@@ -10,6 +10,8 @@
 		EB776FE62C19CC4C00363B2E /* BudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB776FE52C19CC4C00363B2E /* BudgetScreen.swift */; };
 		EB99AFD72C1AC71800F7812E /* TagSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB99AFD62C1AC71800F7812E /* TagSeeder.swift */; };
 		EB99AFD92C1ACB2700F7812E /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB99AFD82C1ACB2700F7812E /* TagsView.swift */; };
+		EBAFC9AA2C1FFDE0006D0CF8 /* FilterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAFC9A92C1FFDE0006D0CF8 /* FilterScreen.swift */; };
+		EBAFC9AD2C200218006D0CF8 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAFC9AC2C200218006D0CF8 /* ExpenseCell.swift */; };
 		EBFA19702C16C89C0031D77D /* budget_app_coredataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFA196F2C16C89C0031D77D /* budget_app_coredataApp.swift */; };
 		EBFA19742C16C89E0031D77D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBFA19732C16C89E0031D77D /* Assets.xcassets */; };
 		EBFA19772C16C89E0031D77D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBFA19762C16C89E0031D77D /* Preview Assets.xcassets */; };
@@ -25,6 +27,8 @@
 		EB776FE52C19CC4C00363B2E /* BudgetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetScreen.swift; sourceTree = "<group>"; };
 		EB99AFD62C1AC71800F7812E /* TagSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSeeder.swift; sourceTree = "<group>"; };
 		EB99AFD82C1ACB2700F7812E /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+		EBAFC9A92C1FFDE0006D0CF8 /* FilterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreen.swift; sourceTree = "<group>"; };
+		EBAFC9AC2C200218006D0CF8 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		EBFA196C2C16C89C0031D77D /* budget app coredata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "budget app coredata.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFA196F2C16C89C0031D77D /* budget_app_coredataApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budget_app_coredataApp.swift; sourceTree = "<group>"; };
 		EBFA19732C16C89E0031D77D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +58,14 @@
 				EB99AFD62C1AC71800F7812E /* TagSeeder.swift */,
 			);
 			path = Seeder;
+			sourceTree = "<group>";
+		};
+		EBAFC9AB2C2001FE006D0CF8 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				EBAFC9AC2C200218006D0CF8 /* ExpenseCell.swift */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		EBFA19632C16C89C0031D77D = {
@@ -106,10 +118,12 @@
 		EBFA19842C17016B0031D77D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				EBAFC9AB2C2001FE006D0CF8 /* cells */,
 				EBFA19852C17018C0031D77D /* ListBudgestScreen.swift */,
 				EBFA19872C1703190031D77D /* AddBudgetScreen.swift */,
 				EB776FE52C19CC4C00363B2E /* BudgetScreen.swift */,
 				EB99AFD82C1ACB2700F7812E /* TagsView.swift */,
+				EBAFC9A92C1FFDE0006D0CF8 /* FilterScreen.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -193,9 +207,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBAFC9AA2C1FFDE0006D0CF8 /* FilterScreen.swift in Sources */,
 				EB776FE62C19CC4C00363B2E /* BudgetScreen.swift in Sources */,
 				EB99AFD92C1ACB2700F7812E /* TagsView.swift in Sources */,
 				EBFA19882C1703190031D77D /* AddBudgetScreen.swift in Sources */,
+				EBAFC9AD2C200218006D0CF8 /* ExpenseCell.swift in Sources */,
 				EB99AFD72C1AC71800F7812E /* TagSeeder.swift in Sources */,
 				EBFA198B2C1706A30031D77D /* String+extensions.swift in Sources */,
 				EBFA198D2C171D0B0031D77D /* Budget+extensions.swift in Sources */,
@@ -344,6 +360,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -373,6 +390,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
