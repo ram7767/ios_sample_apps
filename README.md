@@ -22,7 +22,7 @@ Topics covered:
 
 <img width="331" alt="Screenshot 2024-06-10 at 6 53 00 PM" src="https://github.com/ram7767/ios_sample_apps/assets/95237489/945299d7-fa57-410e-bdd4-55dec23672d6">
 
-3. # [Budget App](https://github.com/ram7767/ios_sample_apps/tree/maps_mapKit):
+3. # [Maps App](https://github.com/ram7767/ios_sample_apps/tree/maps_mapKit):
 
 Topics covered:
 - Designing basic UI with swiftUI
