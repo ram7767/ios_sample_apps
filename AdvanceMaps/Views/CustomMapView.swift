@@ -7,10 +7,12 @@
 
 import MapKit
 import SwiftUI
+import CoreLocation
 
 struct CustomMapView: UIViewRepresentable {
     @Binding var region: MKCoordinateRegion
     @Binding var tappedCoordinate: CLLocationCoordinate2D?
+    var tappedOnMap: () -> Void
     
     class Coordinator: NSObject, MKMapViewDelegate, UIGestureRecognizerDelegate {
         var parent: CustomMapView
@@ -25,18 +27,17 @@ struct CustomMapView: UIViewRepresentable {
                 let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
                 parent.tappedCoordinate = coordinate
                 
-                // Define a smaller span for zooming in
-                let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                 let newRegion = MKCoordinateRegion(center: coordinate, span: span)
                 
-                // Move camera to tapped location with zoom
                 mapView.setRegion(newRegion, animated: true)
                 
-                // Add annotation to tapped location
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = coordinate
-                mapView.removeAnnotations(mapView.annotations) // Remove existing annotations
+                mapView.removeAnnotations(mapView.annotations)
                 mapView.addAnnotation(annotation)
+                mapView.view(for: annotation)?.image = UIImage(systemName: "mappin.and.ellipse")
+                self.parent.tappedOnMap()
             }
         }
         
@@ -47,8 +48,10 @@ struct CustomMapView: UIViewRepresentable {
             if annotationView == nil {
                 annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView?.canShowCallout = true
+                annotationView?.image = UIImage(systemName: "mappin.and.ellipse")
             } else {
                 annotationView?.annotation = annotation
+                annotationView?.image = UIImage(systemName: "mappin.and.ellipse")
             }
             
             return annotationView
@@ -74,9 +77,26 @@ struct CustomMapView: UIViewRepresentable {
     }
 }
 
-
 extension CLLocationCoordinate2D: Identifiable {
     public var id: String {
         "\(latitude),\(longitude)"
+    }
+}
+
+class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+    private let locationManager = CLLocationManager()
+    @Published var location: CLLocationCoordinate2D?
+    
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            self.location = location.coordinate
+        }
     }
 }

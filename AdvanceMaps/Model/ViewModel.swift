@@ -16,8 +16,16 @@ final class ViewModel: ObservableObject {
     @Published var baseResponse: BaseResponse = BaseResponse()
     @Published var isInternetReachable: Bool = false
     
-    func refreshDetails(city: String = "nandyal", completion: (() -> Void)? = nil) {
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=24628d9e32ac156d9c1b9f02661cd1b0") else {
+    func refreshDetails(city: String = "nandyal", cordinates: [String: Double] = [:], useCordinate: Bool = false, completion: (() -> Void)? = nil) {
+        var baseURL = "https://api.openweathermap.org/data/2.5/forecast?"
+        let appid = "&appid=24628d9e32ac156d9c1b9f02661cd1b0"
+        
+        if useCordinate, let lat = cordinates["lat"], let lon = cordinates["lon"] {
+            baseURL += "lat=\(lat)&lon=\(lon)"
+        } else {
+            baseURL += "q=\(city)"
+        }
+        guard let url = URL(string: baseURL + appid) else {
             print("Invalid URL")
             return
         }
